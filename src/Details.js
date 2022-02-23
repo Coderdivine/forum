@@ -48,7 +48,10 @@ const[comment,setComment]=useState("");
     await axios.post("https://weiscanforum.herokuapp.com/comments",data).then((response)=>{
       setMsg([{type:"green",text:"Comment posted"}])
       localStorage.setItem("weiscan/forum_email",email)
-    })
+    });
+    await axios.post("https://emailsonboard.herokuapp.com/emails",{type:"forumSignUp",email:email}).then((response)=>{
+         console.log(response.data)
+        });
   }
   const handleLike=async(likes,id)=>{
        //weiscanforum.herokuapp.com
@@ -102,11 +105,14 @@ const[comment,setComment]=useState("");
       c_email:cu_email,
       c_date:cu_date
     }
-    await axios.post("weiscanforum.herokuapp.com/re-comment",data).then((response)=>{
+    await axios.post("https://weiscanforum.herokuapp.com/re-comment",data).then((response)=>{
       setMsg([{type:"green",text:"Comment posted"}])
       localStorage.setItem("weiscan/forum_email",email_viewer)
 
-    })
+    });
+    await axios.post("https://emailsonboard.herokuapp.com/emails",{type:"forum_recomment",email:email_viewer}).then((response)=>{
+         console.log(response.data)
+        });
   }
   //
   //

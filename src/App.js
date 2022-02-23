@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom"
+import  { BrowserRouter as Router,Route,Link,Routes } from "react-router-dom"
 import Home from './Home';
 import Forum from './Forum';
 import Details from './Details';
@@ -94,8 +94,10 @@ function App() {
   }
   return (
     <div>
+    <Router>
+      
       <create.Provider value={{setMsg,search,generals,topics,comments,re_comments}}>
-      <Router>
+      
 <header>
 <div class="navbar">
 {
@@ -163,14 +165,13 @@ function App() {
 </div>
 </div>
 </header>
-
-  <Switch>
+  <Routes>
     <Route path="/" exact component={Home}/>
     <Route path="/forum" component={Forum}/>
     <Route path="/details/:m_title/" component={Details}/>
     <Route path="/post" component={Post}/>
     <Route path="/signup" component={Signup}/>
-  </Switch>
+  </Routes>
 <div>
  
 <div class="note">
@@ -234,8 +235,10 @@ Any user who wishes to contact us can go to your contact section. Here are the i
 <footer>
 <span>&copy; Weiscan Blog. | All right Reserved</span>
 </footer>
-</Router>
+
 </create.Provider>
+
+</Router>
 </div>
   );
 }
